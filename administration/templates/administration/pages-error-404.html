@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load static %} {%block style%} .center-it{
+height:100vh; align-items:center; } {%endblock%} {%block title%} 404
+{%endblock%} {% block content %}
+
+<main>
+    <div class="container center-it">
+        <section
+            class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center"
+        >
+            <h1>404</h1>
+            <h2>The page you are looking for doesn't exist.</h2>
+            <a class="btn" href="{% url 'home' %}">Back to home</a>
+        </section>
+    </div>
+</main>
+<!-- End #main -->
+
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends 'administration/base.html' %} {% load static %} {% block content %}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'administration:home-admin' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section dashboard">
+        <div class="row">
+            <!-- Left side columns -->
+            <div class="col-lg-8">
+                <div class="row">
+                    <!-- Sales Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card sales-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Loans <span>| This Year</span>
+                                </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                    >
+                                        <i class="bi bi-card-list"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>Ksh. {{loans}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Sales Card -->
+
+                    <!-- Revenue Card -->
+                    <div class="col-xxl-4 col-md-6">
+                        <div class="card info-card revenue-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Deposits <span>| This Year</span>
+                                </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                    >
+                                        <i class="bi bi-currency-dollar"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>Ksh. {{deposits}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Revenue Card -->
+
+                    <!-- Customers Card -->
+                    <div class="col-xxl-4 col-xl-12">
+                        <div class="card info-card customers-card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Members <span>| This Year</span>
+                                </h5>
+
+                                <div class="d-flex align-items-center">
+                                    <div
+                                        class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                                    >
+                                        <i class="bi bi-people"></i>
+                                    </div>
+                                    <div class="ps-3">
+                                        <h6>{{members_number}}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Customers Card -->
+
+                    <!-- Recent Sales -->
+                    <div class="col-12">
+                        <div class="card recent-sales overflow-auto">
+                            <div class="card-body">
+                                <h5 class="card-title">Recent Registrations</h5>
+
+                                <table class="table table-borderless datatable">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">I.D. Number</th>
+                                            <th scope="col">Age</th>
+                                            <th scope="col">First Name</th>
+                                            <th scope="col">Last Name</th>
+                                            <th scope="col">
+                                                Registration Fee
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for member in members %}
+                                        <tr>
+                                            <th scope="row">
+                                                <a href="#"
+                                                    >{{ member.id_number }}</a
+                                                >
+                                            </th>
+                                            <td>{{ member.age }}</td>
+                                            <td>{{ member.first_name }}</td>
+                                            <td>{{ member.last_name }}</td>
+                                            <td>
+                                                Ksh. {{member.registration_fee}}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Recent Sales -->
+
+                    <!-- Top Selling -->
+                    <div class="col-12">
+                        <div class="card top-selling overflow-auto">
+                            <div class="card-body pb-0">
+                                <h5 class="card-title">
+                                    Top Shares <span>| currently</span>
+                                </h5>
+
+                                <table class="table table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Member Name</th>
+                                            <th scope="col">
+                                                Contribution Date
+                                            </th>
+                                            <th scope="col">
+                                                Contribution Month
+                                            </th>
+                                            <th scope="col">Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for contrib in shares %}
+                                        <tr>
+                                            <th>{{contrib.member_name}}</th>
+                                            <td>
+                                                {{contrib.date_of_contribution}}
+                                            </td>
+                                            <td>
+                                                {{contrib.month_of_contribution}}
+                                            </td>
+                                            <td class="fw-bold">
+                                                Ksh. {{contrib.amount}}
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Top Selling -->
+                </div>
+            </div>
+            <!-- End Left side columns -->
+
+            <!-- Right side columns -->
+            <div class="col-lg-4">
+                <!-- News & Updates Traffic -->
+                <div class="card">
+                    <div class="card-body pb-0">
+                        <h5 class="card-title">
+                            News &amp; Blogs <span>| Recent</span>
+                        </h5>
+
+                        <div class="news">
+                            {% for blog in recents %}
+                            <div class="post-item clearfix">
+                                <img src="{{blog.thumbnail.url}}" alt="" />
+                                <h4>{{blog.title}}</h4>
+                                <p>{{blog.overview}}</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- End sidebar recent posts-->
+                    </div>
+                </div>
+                <!-- End News & Updates -->
+            </div>
+            <!-- End Right side columns -->
+        </div>
+    </section>
+</main>
+<!-- End #main -->
+{% endblock %}

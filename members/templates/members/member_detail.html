@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %} Member Details {% endblock title %}
+
+{% block content %}
+
+<body>
+
+  <main id="main">
+    <!-- ======= Links ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Member:  {{ name }}</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if eligibility is True %}
+              {% if existing_loan is True %}
+                <li><a href="{% url 'loans:repayment' %}">Loan Repayment</a></li>
+              {% else %}
+                <li><a href="{% url 'loans:application' %}">Loan Application</a></li>
+              {% endif %}
+            {% endif %}
+            <li><a href="{% url 'members:update' request.user.pk %}">Update Details</a></li>
+            <li><a href="{% url 'account_logout' %}">logout</a></li>
+            <li>Member Details</li>
+
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- End Links -->
+
+    <!-- ======= User Details ======= -->
+    <section
+      class="team"
+      data-aos="fade-up"
+      data-aos-easing="ease-in-out"
+      data-aos-duration="500"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              {% if member.photo  %}
+                <div class="member-img">
+                  <img
+                    src="{{ member.photo.url }}"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              {% endif %}
+              <div class="member-info">
+                  {% if member.is_superuser %}
+                      <span>FYG - Administrator</span>
+                  {% elif member.is_staff %}
+                      <span>FYG - staff</span>
+                  {% endif %}
+                <br><br>
+                <ul>
+                  <li>
+                        <span class="text-info">Age: </span> <p>{{ member.age }}</p>
+
+                        <span class="text-info">Date of Join: </span> <p>{{ user.date_joined }}</p>
+
+                        <span class="text-info">Email Address: </span> <p>{{ user.email }}</p>
+
+                        <span class="text-info">Contact Number: </span> <p>{{ member.contact_number }}</p>
+
+                        <span class="text-info">National Identification Number: </span> <p>{{ member.id_number }}</p>
+
+                    </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End User Details -->
+  </main>
+  <!-- End #main -->
+
+  {% endblock content %}
+</body>

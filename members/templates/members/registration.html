@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Registration{% endblock %}
+
+{% block style %}
+    form > * {
+        padding: 10px;
+    }
+{% endblock %}
+
+{% block content %}
+
+    <section class="features">
+
+      <div class="container">
+
+        <div class="section-title">
+          <h2>New Member Registration</h2>
+          <p>Please fill out the form with your authentic details.</p>
+        </div>
+
+         <div class="col-md-7 pt-4">
+            <div class="col-lg-6">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }} <br><br>
+                    <button class="btn btn-success" type="submit">Register</button>
+                </form>
+            </div>
+          </div>
+
+      </div>
+    </section>
+
+{% endblock %}

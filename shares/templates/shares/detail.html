@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} Member Details {% endblock title %}
+
+{% block content %}
+
+<body>
+
+  <main id="main">
+    <!-- ======= Links ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Member:  {{ name }}</h2>
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if eligibility is True %}
+              {% if existing_loan is True %}
+                <li><a href="{% url 'loans:repayment' %}">Loan Repayment</a></li>
+              {% else %}
+                <li><a href="{% url 'loans:application' %}">Loan Application</a></li>
+              {% endif %}
+            {% endif %}
+            <li><a href="{% url 'account_logout' %}">logout</a></li>
+            <li>Member Details</li>
+
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- End Links -->
+
+    <!-- ======= User Details ======= -->
+    <section
+      class="team"
+      data-aos="fade-up"
+      data-aos-easing="ease-in-out"
+      data-aos-duration="500"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              {% if member.photo  %}
+                <div class="member-img">
+                  <img
+                    src="{{ member.photo.url }}"
+                    class="img-fluid"
+                    alt=""
+                  />
+                </div>
+              {% endif %}
+              <div class="member-info">
+                  {% if member.is_superuser %}
+                      <span>FYG - Administrator</span>
+                  {% elif member.is_staff %}
+                      <span>FYG - staff</span>
+                  {% endif %}
+
+                <ul>
+                  <li>
+                        <span class="text-info">Date of Join: </span> <p>{{ user.date_joined }}</p>
+
+                        <span class="text-info">Email Address: </span> <p>{{ user.email }}</p>
+
+                  </li>
+                  <br />
+
+                  {% if total is None %}
+                      <p>You currently have no shares. You can contribute through the navigation links.</p>
+                  {% else %}
+                      <li>
+                        <span class="text-info">Total shares: </span> <p>KSH. {{ total }}</p>
+                      </li>
+                  {% endif %}
+
+                </ul>
+              </div>
+              {% if eligibility %}
+                {% if existing_loan is not True %}
+                  <p>Congratulations, <strong>{{ shares.member_name }}</strong> 🎉,
+                    you can now apply for a loan on the links above (<i><u>Loan Application</u></i>).</p>
+                {% endif %}
+              {% endif %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End User Details -->
+  </main>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <!-- End Main -->
+
+  {% endblock content %}
+</body>

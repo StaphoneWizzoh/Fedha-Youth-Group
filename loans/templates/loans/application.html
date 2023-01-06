@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Loan Application{% endblock %}
+
+{% block content %}
+
+    <section class="features">
+
+      <div class="container">
+
+        <div class="section-title">
+          <h2>New Loan Application</h2>
+          <p>Please fill out the form with the required details.</p>
+        </div>
+
+        <div class="col-md-7 pt-2 ">
+          <h4 class="col-lg-6 ">Maximum loan amount for various types: </h4>
+          <ol>
+              <li>Normal Loan: {{ normal }}</li>
+              <li>Emergency Loan: {{ emergency }}</li>
+              <li>Short Loan: {{ short }}</li>
+              <li>Development Loan: {{ development }}</li>
+          </ol>
+        </div>
+
+         <div class="col-md-7 pt-5">
+            <div class="col-lg-6">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }} <br><br>
+                    <button class="btn btn-success" type="submit">Apply</button>
+                </form>
+            </div>
+          </div>
+
+      </div>
+    </section>
+
+{% endblock %}

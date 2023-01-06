@@ -1,0 +1,64 @@
+{% extends 'administration/base.html' %} {% load static %} {% block style %}
+.center-it{ height:100vh; align-items:center; } .recent-sales > table{
+padding:60px; } {%endblock%} {%block content%}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Fedha YG Contributions</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'administration:home-admin' %}">Home</a>
+                </li>
+                <li class="breadcrumb-item">Contributions</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+
+    <section class="section center-it">
+        <div class="col-lg-6">
+            <h4>Total Contributions: Ksh.{{total}}</h4>
+
+            <div class="card recent-sales">
+                <!-- Primary Color Bordered Table -->
+                <table
+                    class="table table-bordered datatable border-primary"
+                    id="contributions"
+                >
+                    <thead>
+                        <tr>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">Contribution Date</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for share in shares %}
+                        <tr>
+                            <th scope="row">
+                                <a href="#">{{ share.member_name }}</a>
+                            </th>
+                            <td>{{ share.date_of_contribution }}</td>
+                            <td>{{ share.amount }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- End Primary Color Bordered Table -->
+            </div>
+
+            <button
+                type="button"
+                class="btn btn-info"
+                id="download"
+                onclick="downloadCSV('contributions');"
+            >
+                <i class="bi bi-folder"> Download CSV</i>
+            </button>
+        </div>
+    </section>
+</main>
+<!-- End #main -->
+
+{% endblock %}

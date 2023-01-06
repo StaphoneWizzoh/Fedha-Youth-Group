@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Guaranty{% endblock %}
+
+{% block style %}
+    form > * {
+        padding: 20px;
+    }
+{% endblock %}
+
+{% block content %}
+
+    <section class="features">
+
+      <div class="container">
+
+        <div class="section-title">
+          <h2>New Member Guaranty</h2>
+          <p>Please fill out the form with your authentic details.</p>
+        </div>
+
+         <div class="col-md-7 pt-4">
+            <div class="col-lg-6">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }} <br><br>
+                    <button class="btn btn-success" type="submit">Submit</button>
+                </form>
+            </div>
+          </div>
+
+      </div>
+    </section>
+
+{% endblock %}

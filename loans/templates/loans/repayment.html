@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Loan Repayment{% endblock %}
+
+{% block content %}
+
+    <style>
+        .flexrow {
+            display: flex;
+            border: 2px black;
+        }
+        .flexrow > div { flex: 1; }
+
+        .infocell {
+            border: 2px solid #0dcaf0;
+            border-radius: 5px 25px;
+            background-color: white;
+            padding: 5px;
+            margin: 20px 5px 5px 5px;
+        }
+
+        .flexcolumn {
+            display: flex;
+            border: 2px black;
+        }
+        .flexcolumn > div{ flex: 1; }
+        .book_list_cell {
+            border: 2px solid blue;
+            border-radius: 5px 25px;
+            background-color: white;
+            padding: 5px;
+            margin: 20px 5px 5px 5px;
+        }
+    </style>
+
+    <section class="features">
+
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Loan Repayment</h2>
+          <p>Please fill out the form with the required details.</p>
+        </div>
+
+         <div class="col-md-7 pt-5">
+            <div class="col-lg-6">
+                <div class="infocell">
+                    <p> <strong> <u>Your Active loan</u></strong></p>
+                    <ul>
+                        <li><var> Applied loan type</var>: {{ type }} loan.</li>
+                        <li><var>Loan application date</var>: {{ date }}</li>
+                        <li><var>Current Balance</var>: Ksh. {{ balance }} <br></li>
+                        <li><var>Current interest on loan</var>: Ksh. {{ interest }}<br></li>
+                        <li><var>Expected monthly payment installments</var>: Ksh. {{ expected_amount }}</li>
+                    </ul>
+                </div>
+                <br><br>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }} <br><br>
+                    <button class="btn btn-success" type="submit">Repay</button>
+                </form>
+            </div>
+          </div>
+
+      </div>
+    </section>
+
+{% endblock %}

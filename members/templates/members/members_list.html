@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Members{% endblock %}
+
+{% block content %}
+
+    <section class="features">
+
+      <div class="container">
+
+        <div class="section-title">
+          <h2>The Society's current Members</h2>
+        </div>
+
+        <div class="col-md-7 pt-5">
+            <ol>
+                {% for member in members %}
+                    <li>
+                        <span class="text-info">First Name: </span> <span>{{ member.first_name }}</span>
+                        <br>
+                        <span class="text-info">Last Name: </span> <span>{{ member.last_name }}</span>
+                        <br>
+                        <span class="text-info">Date of Join: </span> <span>{{ member.date_joined }}</span>
+                        <br>
+                        {% if user.is_authenticated %}
+                            <span class="text-info">Age: </span> <span>{{ member.age }}</span>
+                            <br>
+                            <span class="text-info">Email Adress: </span> <span>{{ member.email }}</span>
+                            <br>
+                        {% endif %}
+                    </li>
+                <br><br>
+                {% endfor %}
+            </ol>
+        </div>
+
+        </div>
+    </section>
+{% endblock %}
+
+<!--<li><i class="bi bi-check"></i></li>-->

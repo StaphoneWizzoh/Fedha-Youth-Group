@@ -1,0 +1,148 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Blogs{% endblock %}
+{% block content%}
+
+<!-- ======= Blog Section ======= -->
+<section class="breadcrumbs" style="padding-top: 60px">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Blog</h2>
+
+            <ol>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li>Blog</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<!-- End Blog Section -->
+
+<!-- ======= Blog Section ======= -->
+<section id="blog" class="blog">
+    <div class="container" data-aos="fade-up">
+        <div class="row">
+            <div class="col-lg-8 entries">
+                {% for post in posts %}
+                <article class="entry">
+                    {% if post.thumbnail is not None %}
+                    <div class="entry-img">
+                        <img
+                            src="{{ post.thumbnail.url }}"
+                            alt=""
+                            class="img-fluid"
+                        />
+                    </div>
+                    {% endif %}
+
+                    <h2 class="entry-title">
+                        <a href="{% url 'blogs:details' post.id %}"
+                            >{{ post.title }}</a
+                        >
+                    </h2>
+
+                    <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-person"></i>
+                                <a href="{% url 'blogs:details' post.id %}"
+                                    >{{ post.author }}</a
+                                >
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <i class="bi bi-clock"></i>
+                                <a href="{% url 'blogs:details' post.id %}"
+                                    ><time datetime="2020-01-01"
+                                        >{{ post.date }}</time
+                                    ></a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="entry-content">
+                        <p>{{ post.overview }}</p>
+                        <div class="read-more">
+                            <a href="{% url 'blogs:details' post.id %}"
+                                >Read More</a
+                            >
+                        </div>
+                    </div>
+                </article>
+                <!-- End blog entry -->
+                {% endfor %}
+
+                <div class="blog-pagination">
+                    <ul class="justify-content-center">
+                        <li><a href="#">1</a></li>
+                        <li class="active"><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- End blog entries list -->
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <h3 class="sidebar-title">Search</h3>
+                    <div class="sidebar-item search-form">
+                        <form action="">
+                            <input type="text" />
+                            <button type="submit">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <!-- End sidebar search formn-->
+
+                    <h3 class="sidebar-title">Categories</h3>
+                    <div class="sidebar-item categories">
+                        <ul>
+                            {% for category in categories %}
+                            <li>
+                                <a href="#"
+                                    >{{ category.title }}
+                                    <span>{{ category.post_count }}</span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- End sidebar categories-->
+
+                    <h3 class="sidebar-title">Recent Posts</h3>
+                    <div class="sidebar-item recent-posts">
+                        {% for post in latest %}
+                        <div class="post-item clearfix">
+                            <img
+                                src="{{ post.thumbnail.url }}"
+                                alt="Post Thumbnail"
+                            />
+                            <h4>
+                                <a href="{% url 'blogs:details' post.id %}"
+                                    >{{post.title}}</a
+                                >
+                            </h4>
+                            <time datetime="2020-01-01">{{post.date}}</time>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- End sidebar recent posts-->
+
+                    <h3 class="sidebar-title">Tags</h3>
+                    <div class="sidebar-item tags">
+                        <ul>
+                            {% for tag in tags %}
+                            <li><a href="#">{{tag.title}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- End sidebar tags-->
+                </div>
+                <!-- End sidebar -->
+            </div>
+            <!-- End blog sidebar -->
+        </div>
+    </div>
+</section>
+<!-- End Blog Section -->
+
+{% endblock %}

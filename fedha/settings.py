@@ -1,19 +1,23 @@
+import json
 import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+with open(BASE_DIR / 'fedha.json') as config_file:
+    config = json.load(config_file)
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-e*l^g!#oqtfkmw@ivb2tj^^!$tzv&0c#f*^#@-eem9-4h3^l2n'
+SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '']
+ALLOWED_HOSTS = config['ALLOWED_HOSTS']
 
 # Application definition
 
@@ -79,9 +83,9 @@ WSGI_APPLICATION = 'fedha.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "fedha",
-        'USER': "postgres",
-        'PASSWORD': "staphone",
+        'NAME': config['DB_NAME'],
+        'USER': config['DB_USER'],
+        'PASSWORD': config['DB_PASSWORD'],
         'HOST': "localhost",
         'PORT': "5432",
     }

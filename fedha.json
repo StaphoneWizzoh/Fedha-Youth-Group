@@ -1,0 +1,7 @@
+{
+    "SECRET_KEY": "django-insecure-e*l^g!#oqtfkmw@ivb2tj^^!$tzv&0c#f*^#@-eem9-4h3^l2n",
+    "ALLOWED_HOSTS": ["*"],
+    "DB_NAME": "fedha",
+    "DB_USER": "postgres",
+    "DB_PASSWORD": "staphone"
+}

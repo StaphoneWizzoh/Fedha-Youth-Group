@@ -1,4 +1,5 @@
-
+fedha-dep.pem
+fedha.json
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml

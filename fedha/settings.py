@@ -1,4 +1,5 @@
 import json
+import mimetypes
 import os
 from pathlib import Path
 
@@ -15,7 +16,7 @@ with open(BASE_DIR / 'fedha.json') as config_file:
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = config['ALLOWED_HOSTS']
 
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -172,3 +174,6 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # Custom user config
 AUTH_USER_MODEL = 'members.User'
+
+# MIME settings
+mimetypes.add_type("text/css", ".css", True)

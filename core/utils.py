@@ -20,12 +20,18 @@ def end_year():
 
 def all_shares():
     total = MemberShares.objects.aggregate(Sum('amount'))['amount__sum']
-    return total
+    if total:
+        return total
+    else:
+        return 0
 
 
 def total_loans():
     total = LoanApplication.objects.aggregate(Sum('loan_amount'))['loan_amount__sum']
-    return total
+    if total:
+        return total
+    else:
+        return 0
 
 
 def total_deposits():

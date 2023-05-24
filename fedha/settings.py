@@ -1,3 +1,4 @@
+import dj_database_url
 import json
 import mimetypes
 import os
@@ -83,14 +84,18 @@ WSGI_APPLICATION = 'fedha.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config['DB_NAME'],
-        'USER': config['DB_USER'],
-        'PASSWORD': config['DB_PASSWORD'],
-        'HOST': "localhost",
-        'PORT': "5432",
-    }
+    # Local Postgres DB server "Commented for deployment purposes"
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': config['DB_NAME'],
+    #     'USER': config['DB_USER'],
+    #     'PASSWORD': config['DB_PASSWORD'],
+    #     'HOST': "localhost",
+    #     'PORT': "5432",
+    # }
+
+    # Externally served Postgres DB server
+    "default": dj_database_url.parse(config['REMOTE_DB_URL'])
 }
 
 # Password validation

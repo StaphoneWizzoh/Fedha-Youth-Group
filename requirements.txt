@@ -1,4 +1,5 @@
 dj-rest-auth
+dj_database_url
 Django
 django-allauth
 django-cors-headers

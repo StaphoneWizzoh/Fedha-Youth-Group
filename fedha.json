@@ -1,9 +1,17 @@
 {
     "SECRET_KEY": "django-insecure-e*l^g!#oqtfkmw@ivb2tj^^!$tzv&0c#f*^#@-eem9-4h3^l2n",
+
     "ALLOWED_HOSTS": ["172-31-34-141", "127.0.0.1", "localhost"],
+
     "DB_NAME": "fedha",
     "DB_USER": "postgres",
     "DB_PASSWORD": "staphone",
+
+    "REMOTE_DB_URL": "postgres://fedha_user:KxZoKw0gOClehdQRGxNmBIuJiFLIJmqw@dpg-chn6vj64dad1d573rb9g-a.oregon-postgres.render.com/fedha",
+    "REMOTE_DB_NAME": "fedha",
+    "REMOTE_DB_USER": "postgres",
+    "REMOTE_DB_PASSWORD": "staphone",
+
     "STATIC_ROOT": "/var/www/fedha/static",
     "MEDIA_ROOT": "/var/www/fedha/media"
 }

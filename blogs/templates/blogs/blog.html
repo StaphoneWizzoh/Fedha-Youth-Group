@@ -23,10 +23,18 @@
             <div class="col-lg-8 entries">
                 {% for post in posts %}
                 <article class="entry">
-                    {% if post.thumbnail is not None %}
+                    {% if post.thumbnail.url is not None %}
                     <div class="entry-img">
                         <img
                             src="{{ post.thumbnail.url }}"
+                            alt=""
+                            class="img-fluid"
+                        />
+                    </div>
+                    {% else %}
+                    <div class="entry-img">
+                        <img
+                            src="{% static 'main/img/portfolio/portfolio-1.jpg' %}"
                             alt=""
                             class="img-fluid"
                         />

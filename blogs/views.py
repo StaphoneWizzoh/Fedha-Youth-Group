@@ -14,7 +14,7 @@ class CreatePostView(CreateView):
 
     def get_success_url(self):
         user_id = self.request.user.pk
-        return reverse_lazy('shares:detail', kwargs={'pk': user_id})
+        return reverse_lazy('blogs:homepage')
 
     def get_form_kwargs(self):
         kwargs = super(CreatePostView, self).get_form_kwargs()

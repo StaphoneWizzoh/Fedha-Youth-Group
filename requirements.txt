@@ -1,3 +1,5 @@
+bootstrap4
+crispy-bootstrap4
 dj-rest-auth
 dj_database_url
 Django
@@ -10,9 +12,9 @@ djangorestframework-simplejwt
 environ
 gunicorn
 Pillow
-psycopg2
 psycopg2-binary
 virtualenv
 django-crispy-forms
 django-debug-toolbar
 whitenoise
+ 

@@ -17,7 +17,7 @@ with open(BASE_DIR / 'fedha.json') as config_file:
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = config['ALLOWED_HOSTS']
 
@@ -32,7 +32,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Third parties
-    'crispy_forms',
+    'bootstrap4',
+    "crispy_forms",
+    "crispy_bootstrap4",
     'allauth',
     'allauth.account',
     'rest_framework',
@@ -82,21 +84,24 @@ WSGI_APPLICATION = 'fedha.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    # Local Postgres DB server "Commented for deployment purposes"
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': config['DB_NAME'],
-    #     'USER': config['DB_USER'],
-    #     'PASSWORD': config['DB_PASSWORD'],
-    #     'HOST': "localhost",
-    #     'PORT': "5432",
-    # }
-
-    # Externally served Postgres DB server
-    "default": dj_database_url.parse(config['REMOTE_DB_URL'])
-}
+custom_switch = False
+if custom_switch:
+    DATABASES = {
+        # Local Postgres DB server "Commented for deployment purposes"
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': config['DB_NAME'],
+            'USER': config['DB_USER'],
+            'PASSWORD': config['DB_PASSWORD'],
+            'HOST': "localhost",
+            'PORT': "5432",
+        }
+    }
+else:
+    DATABASES = {
+        # Externally served Postgres DB server
+        "default": dj_database_url.parse(config['REMOTE_DB_URL'])
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -150,7 +155,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Crispy forms
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 # AllAuth Authentication Settings
 SITE_ID = 1
@@ -182,3 +188,4 @@ AUTH_USER_MODEL = 'members.User'
 
 # MIME settings
 mimetypes.add_type("text/css", ".css", True)
+mimetypes.add_type("text/javascript", ".js", True)

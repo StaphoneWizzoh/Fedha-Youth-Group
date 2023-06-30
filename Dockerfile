@@ -4,7 +4,7 @@ FROM python:3.9
 LABEL Author="Staphone Omondi"
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1

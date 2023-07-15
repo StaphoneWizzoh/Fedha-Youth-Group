@@ -12,14 +12,17 @@ from shares.utils import total_shares_count as tsc
 from loans.utils import has_existing_loan as hel
 
 
-def index(request):
-    return HttpResponse("<h1>Members App :)</h1>")
-
-
 class RegistrationView(CreateView):
     form_class = RegistrationForm
     template_name = 'members/registration.html'
-    success_url = 'home'
+
+    def get_success_url(self):
+        user_id = self.request.user.pk
+        return reverse_lazy('members:detail', kwargs={'pk': user_id})
+    def get_form_kwargs(self):
+        kwargs = super(RegistrationView, self).get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
 
 class MemberUpdateView(UpdateView):

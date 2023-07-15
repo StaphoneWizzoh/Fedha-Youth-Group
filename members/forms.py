@@ -1,10 +1,19 @@
-from django import forms
 from allauth.account.forms import SignupForm
+from django import forms
+# from django.contrib.auth.models import AbstractUser
 
-from .models import Registration, Guarantor, MemberExit
+from .models import Registration, Guarantor, MemberExit, User
 
 
 class RegistrationForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(RegistrationForm, self).__init__(*args, **kwargs)
+        user, pk = User.objects.filter(id=self.request.user.pk),self.request.user.pk
+        print(user)
+        self.fields['user'].queryset = User.objects.filter(id=pk)
+
     class Meta:
         model = Registration
         exclude = ('date_joined',)

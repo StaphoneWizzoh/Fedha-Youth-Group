@@ -18,7 +18,7 @@ class RegistrationView(CreateView):
 
     def get_success_url(self):
         user_id = self.request.user.pk
-        return reverse_lazy('members:detail', kwargs={'pk': user_id})
+        return reverse_lazy('members:details', kwargs={'pk': user_id})
     def get_form_kwargs(self):
         kwargs = super(RegistrationView, self).get_form_kwargs()
         kwargs['request'] = self.request

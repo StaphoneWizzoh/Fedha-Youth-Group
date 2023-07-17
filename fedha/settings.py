@@ -3,10 +3,20 @@ import json
 import mimetypes
 import os
 from pathlib import Path
+import socket
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Switch for internet connectivity
+network_connectivity = False
+try:
+    socket.create_connection(("8.8.8.8", 53), timeout=5)
+    network_connectivity =  True
+except socket.error:
+    network_connectivity = False
+
+# External file that holds sensitive information
 with open(BASE_DIR / 'fedha.json') as config_file:
     config = json.load(config_file)
 
@@ -84,8 +94,13 @@ WSGI_APPLICATION = 'fedha.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-custom_switch = True
-if custom_switch:
+
+if network_connectivity:
+    DATABASES = {
+        # Externally served Postgres DB server
+        "default": dj_database_url.parse(config['REMOTE_DB_URL'])
+    }
+else:
     DATABASES = {
         # Local Postgres DB server "Commented for deployment purposes"
         'default': {
@@ -97,11 +112,8 @@ if custom_switch:
             'PORT': "5432",
         }
     }
-else:
-    DATABASES = {
-        # Externally served Postgres DB server
-        "default": dj_database_url.parse(config['REMOTE_DB_URL'])
-    }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

@@ -23,7 +23,7 @@
             <div class="col-lg-8 entries">
                 {% for post in posts %}
                 <article class="entry">
-                    {% if post.thumbnail.url is not None %}
+                    {% if post.thumbnail %}
                     <div class="entry-img">
                         <img
                             src="{{ post.thumbnail.url }}"
@@ -35,7 +35,7 @@
                     <div class="entry-img">
                         <img
                             src="{% static 'main/img/portfolio/portfolio-1.jpg' %}"
-                            alt=""
+                            alt="Default thumbnail"
                             class="img-fluid"
                         />
                     </div>
@@ -90,15 +90,15 @@
 
             <div class="col-lg-4">
                 <div class="sidebar">
-                    <h3 class="sidebar-title">Search</h3>
-                    <div class="sidebar-item search-form">
-                        <form action="">
-                            <input type="text" />
-                            <button type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </form>
-                    </div>
+<!--                    <h3 class="sidebar-title">Search</h3>-->
+<!--                    <div class="sidebar-item search-form">-->
+<!--                        <form action="">-->
+<!--                            <input type="text" />-->
+<!--                            <button type="submit">-->
+<!--                                <i class="bi bi-search"></i>-->
+<!--                            </button>-->
+<!--                        </form>-->
+<!--                    </div>-->
                     <!-- End sidebar search formn-->
 
                     <h3 class="sidebar-title">Categories</h3>
@@ -120,10 +120,17 @@
                     <div class="sidebar-item recent-posts">
                         {% for post in latest %}
                         <div class="post-item clearfix">
+                            {% if post.thumbnail %}
                             <img
                                 src="{{ post.thumbnail.url }}"
                                 alt="Post Thumbnail"
                             />
+                            {% else %}
+                            <img
+                                src="{% static 'main/img/portfolio/portfolio-1.jpg' %}"
+                                alt="Post Thumbnail"
+                            />
+                            {% endif %}
                             <h4>
                                 <a href="{% url 'blogs:details' post.id %}"
                                     >{{post.title}}</a

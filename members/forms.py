@@ -11,7 +11,6 @@ class RegistrationForm(forms.ModelForm):
         self.request = kwargs.pop('request')
         super(RegistrationForm, self).__init__(*args, **kwargs)
         user, pk = User.objects.filter(id=self.request.user.pk),self.request.user.pk
-        print(user)
         self.fields['user'].queryset = User.objects.filter(id=pk)
 
     class Meta:

@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'fedha.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-custom_switch = False
+custom_switch = True
 if custom_switch:
     DATABASES = {
         # Local Postgres DB server "Commented for deployment purposes"

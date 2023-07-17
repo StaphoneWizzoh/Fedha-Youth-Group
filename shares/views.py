@@ -8,6 +8,7 @@ from .forms import SharesForm
 from .models import MemberShares
 from .utils import total_shares as ts, total_shares_count as tsc
 
+from members.models import Registration,User
 from members.utils import get_username
 from loans.utils import has_existing_loan as hel
 
@@ -22,7 +23,7 @@ class ContributionView(CreateView):
 
     def get_success_url(self):
         user_id = self.request.user.pk
-        return reverse_lazy('shares:detail', kwargs={'pk': user_id})
+        return reverse_lazy('shares:details', kwargs={'pk': user_id})
 
     def get_form_kwargs(self):
         kwargs = super(ContributionView, self).get_form_kwargs()
@@ -34,6 +35,13 @@ class SharesDetailview(DetailView):
     template_name = 'shares/detail.html'
     model = MemberShares
     context_object_name = 'shares'
+
+    # def get_object(self, queryset=None):
+    #     pk = self.request.user.pk
+    #     user = User.objects.get(pk=pk)
+    #     member = Registration.objects.get(user=user)
+    #     share = MemberShares.objects.filter(member_name=member)
+    #     return share
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

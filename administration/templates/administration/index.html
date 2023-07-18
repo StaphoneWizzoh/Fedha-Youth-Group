@@ -187,7 +187,11 @@
                         <div class="news">
                             {% for blog in recents %}
                             <div class="post-item clearfix">
+                                {% if blog.thumbnail %}
                                 <img src="{{blog.thumbnail.url}}" alt="" />
+                                {% else %}
+                                <img src="{% static 'admin/assets/img/news-4.jpg' %}" alt="" />
+                                {% endif %}
                                 <h4>{{blog.title}}</h4>
                                 <p>{{blog.overview}}</p>
                             </div>

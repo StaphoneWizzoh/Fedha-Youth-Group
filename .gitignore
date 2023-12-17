@@ -1,5 +1,4 @@
 fedha-dep.pem
-fedha.json
 staticfiles
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

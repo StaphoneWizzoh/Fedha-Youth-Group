@@ -24,7 +24,7 @@
 
          <div class="col-md-7 pt-4">
             <div class="col-lg-6">
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }} <br><br>
                     <button class="btn btn-success" type="submit">Save Changes</button>

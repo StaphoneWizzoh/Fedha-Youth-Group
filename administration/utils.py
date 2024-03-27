@@ -7,6 +7,7 @@ from shares.models import MemberShares
 from loans.models import LoanApplication
 
 
+# Returns a dictionary containing members information
 def members_dict():
     entries = Registration.objects.all()
     dictionary = {i: [] for i in range(1, 13)}

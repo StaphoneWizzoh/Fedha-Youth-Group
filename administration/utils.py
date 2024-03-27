@@ -19,6 +19,7 @@ def members_dict():
     return dictionary
 
 
+# Returns a dictionary containing shares details
 def shares_dict():
     entries = MemberShares.objects.all()
     dictionary = {i: [] for i in range(1, 13)}

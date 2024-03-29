@@ -15,6 +15,7 @@ def total_shares(member_id):
     return total
 
 
+# returns sum of shares of an individual per month
 def shares_total_per_month(member_id):
     member = Registration.objects.get(user__id=member_id)
     total = MemberShares.objects.filter(member_name=member). \

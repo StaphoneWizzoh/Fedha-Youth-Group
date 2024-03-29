@@ -24,6 +24,7 @@ def shares_total_per_month(member_id):
     return total
 
 
+# returns aggregate count of shares per month
 def shares_count_per_month(member_id):
     member = Registration.objects.get(user__id=member_id)
     count = MemberShares.objects.filter(member_name=member). \

@@ -7,6 +7,7 @@ from members.models import Registration
 from .models import MemberShares
 
 
+# returns total shares of an individual
 def total_shares(member_id):
     member = Registration.objects.get(user__id=member_id)
     total = MemberShares.objects.filter(member_name=member). \

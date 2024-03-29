@@ -31,6 +31,7 @@ def shares_count_per_month(member_id):
     return count
 
 
+# returns count of share contribution 
 def total_shares_count(member_id):
     member = Registration.objects.get(user__id=member_id)
     count = MemberShares.objects.filter(member_name=member, month_of_contribution__month__gte=6).count()

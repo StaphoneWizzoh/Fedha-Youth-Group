@@ -29,16 +29,28 @@ Facilitate smooth exits, reimbursing the exiting member's full share contributio
 
 ## Installation
 
-Clone the repository: git clone https://github.com/StaphoneWizzoh/Fedha-Youth-Group.git
-Install dependencies: pip install -r requirements.txt
-Create and migrate the database: python manage.py migrate
-Run the development server: python manage.py runserver
+Clone the repository: 
+``` bash
+git clone https://github.com/StaphoneWizzoh/Fedha-Youth-Group.git
+```
+Install dependencies: 
+```bash
+pip install -r requirements.txt
+```
+Create and migrate the database: 
+```bash
+python manage.py migrate
+```
+Run the development server: 
+```bash
+python manage.py runserver
+```
 
 ## Contributing
 Contributions to this project are welcome! Feel free to submit bug reports, feature requests, or pull requests. Let's work together to enhance financial inclusion and empower youths!
 
 ## Credits
-This project was developed by Your <strong>Onyango Staphone Omondi</strong>.
+This project was developed by <a href="https://github.com/StaphoneWizzoh">Staphone Omondi</a>.
 
 ## License
 This project is licensed under the <strong>MIT License</strong>.

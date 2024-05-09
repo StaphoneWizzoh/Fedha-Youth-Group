@@ -31,8 +31,8 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey(Registration, on_delete=models.CASCADE)
     thumbnail = models.ImageField(null=True, blank=True, upload_to="blogs/photos/")
-    categories = models.ManyToManyField(Category, default=None)
-    tags = models.ManyToManyField(Tag, default=None)
+    categories = models.ManyToManyField(Category, default=None, blank=True)
+    tags = models.ManyToManyField(Tag, default=None, blank=True)
 
     def __str__(self):
         return self.title
